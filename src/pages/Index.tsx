@@ -10,7 +10,7 @@ import techAnimation from "../assets/tech-animation.json";
 
 const FloatingSphere = () => {
   return (
-    <mesh>
+    <mesh position={[0, 0, 0]}>
       <Sphere args={[1, 32, 32]}>
         <meshStandardMaterial color="#0016a9" wireframe />
       </Sphere>
@@ -56,12 +56,12 @@ const Index = () => {
       {/* Hero Section with 3D Animation */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Canvas camera={{ position: [0, 0, 5] }}>
+          <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
             <Suspense fallback={null}>
               <FloatingSphere />
-              <OrbitControls enableZoom={false} autoRotate />
+              <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1} />
             </Suspense>
           </Canvas>
         </div>
