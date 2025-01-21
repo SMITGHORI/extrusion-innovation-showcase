@@ -2,23 +2,17 @@ import { useEffect, useRef, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Sphere } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { ArrowRight, Target, Settings, Building, ChevronRight, Users, Globe, Award, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Lottie from "lottie-react";
 import techAnimation from "../assets/tech-animation.json";
 
-const FloatingSphere = () => {
+const Scene = () => {
   return (
-    <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}>
-      <Sphere args={[1, 32, 32]}>
-        <meshStandardMaterial 
-          color="#0016a9" 
-          wireframe 
-          transparent
-          opacity={0.8}
-        />
-      </Sphere>
+    <mesh>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshStandardMaterial color="#0016a9" wireframe />
     </mesh>
   );
 };
@@ -62,30 +56,17 @@ const Index = () => {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Canvas
-            camera={{ 
-              position: [0, 0, 5], 
-              fov: 75,
-              near: 0.1,
-              far: 1000
-            }}
-            gl={{ 
-              antialias: true,
-              alpha: true 
-            }}
+            camera={{ position: [0, 0, 5] }}
+            style={{ background: 'black' }}
           >
-            <color attach="background" args={['#000']} />
-            <fog attach="fog" args={['#000', 5, 15]} />
             <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
+            <pointLight position={[10, 10, 10]} />
             <Suspense fallback={null}>
-              <FloatingSphere />
+              <Scene />
               <OrbitControls 
-                enableZoom={false} 
-                autoRotate 
+                enableZoom={false}
+                autoRotate
                 autoRotateSpeed={1}
-                enablePan={false}
-                minPolarAngle={Math.PI / 2}
-                maxPolarAngle={Math.PI / 2}
               />
             </Suspense>
           </Canvas>
@@ -93,6 +74,7 @@ const Index = () => {
 
         <div className="gradient-blur bg-primary/30 top-0 left-0" />
         <div className="gradient-blur bg-blue-500/30 bottom-0 right-0" />
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
