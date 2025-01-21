@@ -10,9 +10,14 @@ import techAnimation from "../assets/tech-animation.json";
 
 const FloatingSphere = () => {
   return (
-    <mesh position={[0, 0, 0]}>
+    <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}>
       <Sphere args={[1, 32, 32]}>
-        <meshStandardMaterial color="#0016a9" wireframe />
+        <meshStandardMaterial 
+          color="#0016a9" 
+          wireframe 
+          transparent
+          opacity={0.8}
+        />
       </Sphere>
     </mesh>
   );
@@ -56,12 +61,32 @@ const Index = () => {
       {/* Hero Section with 3D Animation */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+          <Canvas
+            camera={{ 
+              position: [0, 0, 5], 
+              fov: 75,
+              near: 0.1,
+              far: 1000
+            }}
+            gl={{ 
+              antialias: true,
+              alpha: true 
+            }}
+          >
+            <color attach="background" args={['#000']} />
+            <fog attach="fog" args={['#000', 5, 15]} />
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
             <Suspense fallback={null}>
               <FloatingSphere />
-              <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1} />
+              <OrbitControls 
+                enableZoom={false} 
+                autoRotate 
+                autoRotateSpeed={1}
+                enablePan={false}
+                minPolarAngle={Math.PI / 2}
+                maxPolarAngle={Math.PI / 2}
+              />
             </Suspense>
           </Canvas>
         </div>
