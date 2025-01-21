@@ -1,21 +1,11 @@
-import { useEffect, useRef, Suspense } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { ArrowRight, Target, Settings, Building, ChevronRight, Users, Globe, Award, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Users, Globe, Award, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Lottie from "lottie-react";
 import techAnimation from "../assets/tech-animation.json";
-
-const Scene = () => {
-  return (
-    <mesh>
-      <sphereGeometry args={[1, 32, 32]} />
-      <meshStandardMaterial color="#0016a9" wireframe />
-    </mesh>
-  );
-};
+import ThreeScene from "@/components/ThreeScene";
 
 const Index = () => {
   const targetRef = useRef(null);
@@ -54,23 +44,7 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Hero Section with 3D Animation */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Canvas
-            camera={{ position: [0, 0, 5] }}
-            style={{ background: 'black' }}
-          >
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} />
-            <Suspense fallback={null}>
-              <Scene />
-              <OrbitControls 
-                enableZoom={false}
-                autoRotate
-                autoRotateSpeed={1}
-              />
-            </Suspense>
-          </Canvas>
-        </div>
+        <ThreeScene />
 
         <div className="gradient-blur bg-primary/30 top-0 left-0" />
         <div className="gradient-blur bg-blue-500/30 bottom-0 right-0" />
@@ -130,7 +104,7 @@ const Index = () => {
         </motion.div>
       </section>
 
-      {/* Features Section with Lottie Animation */}
+      {/* Features Section */}
       <section className="py-20 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
