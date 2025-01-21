@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Target, Settings, Building } from "lucide-react";
 
 const Index = () => {
@@ -71,69 +72,142 @@ const Index = () => {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        <div className="gradient-blur bg-primary/30 top-0 left-0" />
+        <div className="gradient-blur bg-blue-500/30 bottom-0 right-0" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent" />
-        <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="container mx-auto px-4 relative z-10"
+        >
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="text-6xl md:text-7xl font-bold mb-6"
+            >
               Leading Innovation in{" "}
               <span className="text-primary">Extrusion Technology</span>
-            </h1>
-            <p className="text-xl text-gray-700 mb-8 animate-fade-in delay-200">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-xl text-gray-700 mb-8"
+            >
               31 years of experience in extrusion machinery industry with proven
               engineering and 100% performance assurance.
-            </p>
-            <Link
-              to="/products"
-              className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors animate-fade-in delay-300"
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
             >
-              Explore Our Products
-              <ArrowRight className="ml-2" />
-            </Link>
+              <Link
+                to="/products"
+                className="inline-flex items-center bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary-dark transition-colors glass-effect"
+              >
+                Explore Our Products
+                <ArrowRight className="ml-2" />
+              </Link>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-4 gap-8"
+          >
             {stats.map((stat, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="scroll-animate opacity-0 bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow"
+                variants={itemVariants}
+                className="glass-effect p-8 rounded-xl text-center hover:shadow-xl transition-shadow"
               >
-                <stat.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-lg flex items-center justify-center"
+                >
+                  <stat.icon className="w-8 h-8 text-primary" />
+                </motion.div>
+                <div className="text-4xl font-bold text-gray-900 mb-2">
                   {stat.value}
                 </div>
                 <div className="text-gray-600">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Products Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">Our Products</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-20 relative overflow-hidden">
+        <div className="gradient-blur bg-primary/20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl font-bold text-center mb-12"
+          >
+            Our Products
+          </motion.h2>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
             {products.map((product, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="scroll-animate opacity-0 bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+                variants={itemVariants}
+                className="glass-effect rounded-xl overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <img
+                <motion.img
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
                   src={product.image}
                   alt={product.title}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{product.title}</h3>
+                  <h3 className="text-2xl font-bold mb-2">{product.title}</h3>
                   <p className="text-gray-600 mb-4">{product.description}</p>
                   <Link
                     to={`/products/${product.title
@@ -145,9 +219,9 @@ const Index = () => {
                     <ArrowRight className="ml-1 w-4 h-4" />
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

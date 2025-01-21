@@ -1,3 +1,7 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/space-grotesk/700.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -32,9 +36,20 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-grotesk;
+  }
+}
+
+.glass-effect {
+  @apply backdrop-blur-lg bg-white/30 border border-white/20;
+}
+
+.gradient-blur {
+  @apply absolute w-[500px] h-[500px] rounded-full blur-3xl opacity-20;
 }
 
 .scroll-animate {
