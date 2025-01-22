@@ -5,7 +5,6 @@ import { ArrowRight, ChevronRight, Users, Globe, Award, ArrowUpRight } from "luc
 import { Button } from "@/components/ui/button";
 import Lottie from "lottie-react";
 import techAnimation from "../assets/tech-animation.json";
-import ThreeScene from "@/components/ThreeScene";
 
 const Index = () => {
   const targetRef = useRef(null);
@@ -43,24 +42,36 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with 3D Animation */}
+      {/* Hero Section with Animated Gradient Background */}
       <motion.section
         ref={targetRef}
         style={{ y, opacity }}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-gray-50"
       >
-        <ThreeScene />
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute w-[500px] h-[500px] -top-40 -left-40 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl animate-float opacity-70" />
+          <div className="absolute w-[500px] h-[500px] -bottom-40 -right-40 bg-blue-400/10 rounded-full mix-blend-multiply filter blur-xl animate-float opacity-70" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-r from-transparent via-white/90 to-transparent animate-gradient-x" />
+        </div>
 
-        <div className="gradient-blur bg-primary/30 top-0 left-0" />
-        <div className="gradient-blur bg-blue-500/30 bottom-0 right-0" />
+        {/* Main Content */}
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Animated Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-block mb-6"
+            >
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                <span className="animate-pulse mr-2">●</span>
+                Innovating Since 1992
+              </span>
+            </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="container mx-auto px-4 relative z-10 text-center"
-        >
-          <div className="max-w-4xl mx-auto">
+            {/* Main Heading with Gradient Text */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -68,8 +79,15 @@ const Index = () => {
               className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500"
             >
               Innovating the Future of{" "}
-              <span className="text-primary">Extrusion</span>
+              <span className="relative inline-block">
+                Extrusion
+                <svg className="absolute -bottom-2 left-0 w-full h-2 text-primary/20" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M0,50 Q50,0 100,50" fill="none" stroke="currentColor" strokeWidth="8"/>
+                </svg>
+              </span>
             </motion.h1>
+
+            {/* Animated Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -79,6 +97,8 @@ const Index = () => {
               Pioneering advanced extrusion technologies with 31 years of excellence,
               delivering cutting-edge solutions for tomorrow's manufacturing challenges.
             </motion.p>
+
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -105,8 +125,33 @@ const Index = () => {
                 </Link>
               </Button>
             </motion.div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 1 }}
+              className="absolute bottom-8 left-1/2 -translate-x-1/2"
+            >
+              <div className="flex flex-col items-center">
+                <span className="text-sm text-gray-500 mb-2">Scroll to explore</span>
+                <motion.div
+                  animate={{
+                    y: [0, 10, 0],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                  className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center p-2"
+                >
+                  <motion.div className="w-1 h-1 bg-gray-300 rounded-full" />
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
       </motion.section>
 
       {/* Features Section */}
