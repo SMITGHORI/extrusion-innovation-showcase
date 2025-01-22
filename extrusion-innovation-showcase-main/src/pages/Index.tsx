@@ -5,6 +5,30 @@ import { ArrowRight, ChevronRight, Users, Globe, Award, ArrowUpRight, Rocket, Pa
 import { Button } from "@/components/ui/button";
 import Lottie from "lottie-react";
 import techAnimation from "../assets/tech-animation.json";
+import { FeatureSteps } from "@/components/blocks/feature-section";
+import { StrengthsSection } from "@/components/blocks/strengths-section";
+import { PreFooterCTA } from "@/components/blocks/pre-footer-cta";
+
+const features = [
+  { 
+    step: 'Step 1', 
+    title: 'Advanced Technology',
+    content: 'Experience cutting-edge extrusion technology that sets new industry standards.', 
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop' 
+  },
+  { 
+    step: 'Step 2',
+    title: 'Quality Manufacturing',
+    content: 'Our state-of-the-art manufacturing processes ensure the highest quality products.',
+    image: 'https://images.unsplash.com/photo-1581092160607-7685fa1c1f1f?q=80&w=2070&auto=format&fit=crop'
+  },
+  { 
+    step: 'Step 3',
+    title: 'Global Solutions',
+    content: 'Delivering innovative extrusion solutions to clients worldwide.',
+    image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64926?q=80&w=2070&auto=format&fit=crop'
+  },
+]
 
 const Index = () => {
   const targetRef = useRef(null);
@@ -69,7 +93,7 @@ const Index = () => {
             >
               <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-primary/10 text-primary">
                 <span className="animate-pulse mr-2">●</span>
-                Innovating Since 1992
+                Innovating Since 1990
               </span>
             </motion.div>
 
@@ -144,82 +168,7 @@ const Index = () => {
         </div>
       </motion.section>
 
-      {/* Enhanced Why Choose Us Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <span className="text-primary font-medium tracking-wider text-sm uppercase mb-4 block">Our Strengths</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500">
-              Why Industry Leaders Choose Us
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              With over three decades of innovation and excellence, we've established ourselves as pioneers in extrusion technology, 
-              delivering solutions that transform manufacturing possibilities.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Globe,
-                title: "Global Presence",
-                description: "Operating across 30+ countries, delivering innovative solutions to diverse markets worldwide.",
-                stat: "30+",
-                statLabel: "Countries Served"
-              },
-              {
-                icon: Users,
-                title: "Expert Team",
-                description: "Our team of seasoned professionals brings decades of combined expertise in extrusion technology.",
-                stat: "100+",
-                statLabel: "Team Members"
-              },
-              {
-                icon: Award,
-                title: "Quality Excellence",
-                description: "ISO 9001:2015 certified, ensuring world-class manufacturing standards and processes.",
-                stat: "15+",
-                statLabel: "Certifications"
-              },
-              {
-                icon: Rocket,
-                title: "Innovation First",
-                description: "Continuous R&D investment to develop cutting-edge extrusion solutions.",
-                stat: "50+",
-                statLabel: "Patents"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="glass-effect p-8 rounded-xl hover:shadow-xl transition-all duration-300 group hover:-translate-y-2"
-              >
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-primary/10 rounded-full scale-150 blur-xl group-hover:scale-175 transition-transform" />
-                  <div className="relative bg-white rounded-full p-4 w-16 h-16 flex items-center justify-center shadow-lg">
-                    <feature.icon className="w-8 h-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-gray-600 mb-4">{feature.description}</p>
-                <div className="pt-4 border-t border-gray-100">
-                  <div className="text-3xl font-bold text-primary mb-1">{feature.stat}</div>
-                  <div className="text-sm text-gray-500">{feature.statLabel}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <StrengthsSection />
 
       {/* New Achievement Section */}
       <section className="py-24 bg-primary/5 relative overflow-hidden">
@@ -398,6 +347,18 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <div className="space-y-4 bg-background">
+        <FeatureSteps 
+          features={features}
+          title="Innovation in Extrusion"
+          autoPlayInterval={4000}
+          imageHeight="h-[500px]"
+          className="py-16"
+        />
+      </div>
+
+      <PreFooterCTA />
     </div>
   );
 };
