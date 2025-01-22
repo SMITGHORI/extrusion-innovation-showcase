@@ -29,15 +29,19 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-          light: "hsl(var(--primary-light))",
+          DEFAULT: "#0016a9",
+          foreground: "#ffffff",
+          light: "#1a2fbd",
+          dark: "#001087"
         },
         secondary: "#F5F5F5",
       },
       backgroundImage: {
-        'grid-small-white': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='8' height='8' fill='none' stroke='rgb(255 255 255 / 0.1)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E\")",
+        'grid-small-white': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='16' height='16' fill='none' stroke='rgb(0 22 169 / 0.12)' stroke-width='0.3'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E\")",
+        'dots': "url(\"data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.4' fill='%230016a9' fill-opacity='0.12'/%3E%3C/svg%3E\")",
+        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M96 0H0V1.5H96V0Z' fill='%230016a9' fill-opacity='0.08'/%3E%3Cpath d='M96 98.5H0V100H96V98.5Z' fill='%230016a9' fill-opacity='0.08'/%3E%3Cpath d='M1.5 1.5V98.5H0V1.5H1.5Z' fill='%230016a9' fill-opacity='0.08'/%3E%3Cpath d='M100 1.5V98.5H98.5V1.5H100Z' fill='%230016a9' fill-opacity='0.08'/%3E%3C/svg%3E\")",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'vignette': 'radial-gradient(circle at center, transparent 20%, rgba(255,255,255,0.8) 80%, white 100%)',
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",

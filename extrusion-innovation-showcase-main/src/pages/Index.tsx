@@ -73,17 +73,37 @@ const Index = () => {
         style={{ y, opacity, scale }}
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* Animated background dots */}
+        {/* Layered background patterns */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-small-white/[0.2] -z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-primary/10 to-primary/5 animate-gradient" />
+          {/* White background base */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/98 to-white/95" />
+          
+          {/* Base grid pattern */}
+          <div className="absolute inset-0 bg-grid-pattern opacity-70" />
+          
+          {/* Animated dots pattern */}
+          <div className="absolute inset-0 bg-dots opacity-60 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+          
+          {/* Small grid lines */}
+          <div className="absolute inset-0 bg-grid-small-white opacity-70" />
+          
+          {/* Gradient overlays */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/30 to-white/40" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-primary/8 to-primary/5 animate-gradient" />
+          
+          {/* Vignette effect */}
+          <div className="absolute inset-0 bg-vignette opacity-90" />
+          
+          {/* Center spotlight */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.8 }}
-            transition={{ duration: 1 }}
-            className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] rounded-full bg-gradient-radial from-primary/20 via-primary/5 to-transparent blur-3xl"
+            transition={{ duration: 1.5 }}
+            className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] rounded-full bg-gradient-radial from-white/40 via-primary/5 to-transparent blur-3xl"
           />
+          
+          {/* Additional vignette glow */}
+          <div className="absolute inset-0 bg-gradient-radial from-transparent via-white/30 to-white/60" />
         </div>
 
         <div className="container px-4 md:px-6 relative z-10">
@@ -112,11 +132,11 @@ const Index = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="relative mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
               >
-                <span className="inline-block bg-gradient-to-br from-gray-900 via-primary to-gray-900 bg-clip-text text-transparent dark:from-white dark:via-primary-light dark:to-white">
+                <span className="inline-block bg-gradient-to-br from-primary via-primary-light to-primary bg-clip-text text-transparent">
                   Innovating the Future
                 </span>
                 <br className="hidden sm:block" />
-                <span className="inline-block bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
+                <span className="inline-block bg-gradient-to-r from-primary-dark via-primary to-primary-light bg-clip-text text-transparent">
                   of Extrusion
                 </span>
                 <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-primary/10 to-primary-light/10 blur-xl opacity-50 animate-pulse" />
@@ -127,11 +147,39 @@ const Index = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto"
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="relative mt-6 max-w-2xl mx-auto"
             >
-              Pioneering advanced extrusion technologies with 31 years of excellence,
-              delivering cutting-edge solutions for tomorrow's manufacturing challenges.
+              <span className="block text-base sm:text-lg text-gray-700 dark:text-gray-200 font-normal leading-relaxed tracking-wide">
+                Pioneering advanced extrusion technologies with{" "}
+                <span className="text-primary font-semibold">34 years</span> of excellence,{" "}
+                <span className="relative inline-block">
+                  delivering cutting-edge solutions
+                  <svg
+                    className="absolute -bottom-0.5 left-0 w-full"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="2"
+                    viewBox="0 0 100 2"
+                    fill="none"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M0 1C25 1 25 0.5 50 0.5C75 0.5 75 1 100 1"
+                      stroke="url(#gradient)"
+                      strokeWidth="0.3"
+                    />
+                    <defs>
+                      <linearGradient id="gradient" x1="0" y1="0" x2="100" y2="0">
+                        <stop offset="0%" stopColor="#0016a9" stopOpacity="0.3" />
+                        <stop offset="50%" stopColor="#0016a9" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#0016a9" stopOpacity="0.3" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </span>{" "}
+                for tomorrow's manufacturing challenges.
+              </span>
+              <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-white/40 via-transparent to-white/40 blur-sm" />
             </motion.p>
 
             {/* Enhanced CTA Buttons */}

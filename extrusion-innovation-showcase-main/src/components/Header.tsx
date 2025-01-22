@@ -1,122 +1,104 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Home, Building, Package, Image, Briefcase, Mail } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
-const Header = () => {
+export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { scrollY } = useScroll();
-  
-  const headerBackground = useTransform(
-    scrollY,
-    [0, 50],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.9)"]
-  );
-
-  const headerShadow = useTransform(
-    scrollY,
-    [0, 50],
-    ["none", "0 2px 10px rgba(0, 0, 0, 0.1)"]
-  );
-
-  const menuItems = [
-    { name: "Home", icon: Home, path: "/" },
-    { name: "Company", icon: Building, path: "/company" },
-    { name: "Products", icon: Package, path: "/products" },
-    { name: "Exhibition", icon: Image, path: "/exhibition" },
-    { name: "Works", icon: Briefcase, path: "/works" },
-    { name: "Contact us", icon: Mail, path: "/contact" },
-  ];
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 10);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <motion.header
-      style={{
-        background: headerBackground,
-        boxShadow: headerShadow,
-      }}
-      className="fixed w-full z-50 transition-all duration-300"
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "py-4 bg-white/70 backdrop-blur-lg shadow-sm"
+          : "py-6 bg-transparent"
+      }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+        <nav className="flex items-center justify-between">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="relative text-2xl font-bold text-primary hover:opacity-80 transition-opacity"
           >
-            <Link to="/" className="text-2xl font-bold text-primary hover:text-primary-dark transition-colors">
-              Ashok Extrusion
-            </Link>
-          </motion.div>
+            <span className="relative z-10">ExInn</span>
+            <div className="absolute inset-0 bg-primary/10 blur-lg rounded-full" />
+          </Link>
 
-          {/* Desktop Menu */}
-          <nav className="hidden lg:flex space-x-8">
-            {menuItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {[
+              ["Home", "/"],
+              ["Products", "/products"],
+              ["About", "/about"],
+              ["Contact", "/contact"],
+            ].map(([label, path]) => (
+              <Link
+                key={path}
+                to={path}
+                className="relative group text-gray-600 hover:text-primary transition-colors duration-200"
               >
-                <Link
-                  to={item.path}
-                  className="flex items-center text-gray-700 hover:text-primary transition-colors relative group"
-                >
-                  <item.icon className="w-4 h-4 mr-2" />
-                  <span className="text-sm font-medium">{item.name}</span>
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-                </Link>
-              </motion.div>
+                <span className="relative z-10">{label}</span>
+                <div className="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity blur-sm" />
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+              </Link>
             ))}
-          </nav>
+          </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="lg:hidden text-gray-700 hover:text-primary transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden relative z-50 p-2 text-gray-600 hover:text-primary transition-colors"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
-        </div>
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white absolute top-20 left-0 w-full shadow-lg"
-          >
-            <nav className="flex flex-col p-4 space-y-4">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className="flex items-center py-2 px-4 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <item.icon className="w-5 h-5 mr-3" />
-                  <span className="text-base font-medium">{item.name}</span>
-                </Link>
-              ))}
-            </nav>
-          </motion.div>
-        )}
+          {/* Mobile Navigation */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, x: "100%" }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: "100%" }}
+                transition={{ type: "spring", damping: 20 }}
+                className="fixed inset-0 z-40 bg-white/90 backdrop-blur-lg md:hidden"
+              >
+                <div className="flex flex-col items-center justify-center h-full space-y-8">
+                  {[
+                    ["Home", "/"],
+                    ["Products", "/products"],
+                    ["About", "/about"],
+                    ["Contact", "/contact"],
+                  ].map(([label, path]) => (
+                    <Link
+                      key={path}
+                      to={path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-xl font-medium text-gray-800 hover:text-primary transition-colors"
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </nav>
       </div>
-    </motion.header>
+    </header>
   );
-};
-
-export default Header;
+}
