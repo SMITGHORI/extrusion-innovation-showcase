@@ -43,11 +43,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Enhanced Animated Background */}
+      {/* Hero Section with Enhanced Responsive Design */}
       <motion.section
         ref={targetRef}
         style={{ y, opacity, scale }}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden"
       >
         {/* Enhanced Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white">
@@ -57,7 +57,7 @@ const Index = () => {
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
         </div>
 
-        {/* Main Content */}
+        {/* Main Content with Responsive Typography */}
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Animated Badge */}
@@ -67,18 +67,18 @@ const Index = () => {
               transition={{ duration: 0.5 }}
               className="inline-block mb-6"
             >
-              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary">
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-primary/10 text-primary">
                 <span className="animate-pulse mr-2">●</span>
                 Innovating Since 1992
               </span>
             </motion.div>
 
-            {/* Enhanced Main Heading with Gradient Text */}
+            {/* Enhanced Main Heading with Responsive Typography */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500 leading-tight"
             >
               Innovating the Future of{" "}
               <span className="relative inline-block">
@@ -102,12 +102,12 @@ const Index = () => {
               </span>
             </motion.h1>
 
-            {/* Enhanced Description */}
+            {/* Enhanced Description with Responsive Typography */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto"
             >
               Pioneering advanced extrusion technologies with 31 years of excellence,
               delivering cutting-edge solutions for tomorrow's manufacturing challenges.
@@ -122,7 +122,7 @@ const Index = () => {
             >
               <Button
                 asChild
-                className="group bg-primary hover:bg-primary-dark text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
+                className="group bg-primary hover:bg-primary-dark text-white px-4 sm:px-6 py-2 sm:py-4 text-sm sm:text-base rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
               >
                 <Link to="/products">
                   Explore Solutions
@@ -132,7 +132,7 @@ const Index = () => {
               <Button
                 asChild
                 variant="outline"
-                className="group px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-xl border-2 hover:bg-primary/5 transition-all duration-300"
+                className="group px-4 sm:px-6 py-2 sm:py-4 text-sm sm:text-base rounded-xl border-2 hover:bg-primary/5 transition-all duration-300"
               >
                 <Link to="/contact">
                   Get in Touch
