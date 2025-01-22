@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ChevronRight, Users, Globe, Award, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Users, Globe, Award, ArrowUpRight, Rocket, Package, Car, Building, Stethoscope, Leaf, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Lottie from "lottie-react";
 import techAnimation from "../assets/tech-animation.json";
@@ -43,7 +43,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Enhanced Responsive Design */}
+      {/* Hero Section */}
       <motion.section
         ref={targetRef}
         style={{ y, opacity, scale }}
@@ -144,7 +144,8 @@ const Index = () => {
         </div>
       </motion.section>
 
-      <section className="py-20 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+      {/* Enhanced Why Choose Us Section */}
+      <section className="py-24 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -153,32 +154,46 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-              Why Choose Us
+            <span className="text-primary font-medium tracking-wider text-sm uppercase mb-4 block">Our Strengths</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500">
+              Why Industry Leaders Choose Us
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Combining decades of expertise with cutting-edge technology to deliver
-              superior extrusion solutions.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              With over three decades of innovation and excellence, we've established ourselves as pioneers in extrusion technology, 
+              delivering solutions that transform manufacturing possibilities.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: Globe,
-                title: "Global Reach",
-                description: "Serving clients worldwide with innovative solutions",
+                title: "Global Presence",
+                description: "Operating across 30+ countries, delivering innovative solutions to diverse markets worldwide.",
+                stat: "30+",
+                statLabel: "Countries Served"
               },
               {
                 icon: Users,
                 title: "Expert Team",
-                description: "Dedicated professionals with years of experience",
+                description: "Our team of seasoned professionals brings decades of combined expertise in extrusion technology.",
+                stat: "100+",
+                statLabel: "Team Members"
               },
               {
                 icon: Award,
-                title: "Quality Assured",
-                description: "ISO certified manufacturing processes",
+                title: "Quality Excellence",
+                description: "ISO 9001:2015 certified, ensuring world-class manufacturing standards and processes.",
+                stat: "15+",
+                statLabel: "Certifications"
               },
+              {
+                icon: Rocket,
+                title: "Innovation First",
+                description: "Continuous R&D investment to develop cutting-edge extrusion solutions.",
+                stat: "50+",
+                statLabel: "Patents"
+              }
             ].map((feature, index) => (
               <motion.div
                 key={index}
@@ -186,18 +201,134 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="glass-effect p-8 rounded-xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="glass-effect p-8 rounded-xl hover:shadow-xl transition-all duration-300 group hover:-translate-y-2"
               >
-                <feature.icon className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 bg-primary/10 rounded-full scale-150 blur-xl group-hover:scale-175 transition-transform" />
+                  <div className="relative bg-white rounded-full p-4 w-16 h-16 flex items-center justify-center shadow-lg">
+                    <feature.icon className="w-8 h-8 text-primary" />
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold mb-2">{feature.title}</h3>
+                <p className="text-gray-600 mb-4">{feature.description}</p>
+                <div className="pt-4 border-t border-gray-100">
+                  <div className="text-3xl font-bold text-primary mb-1">{feature.stat}</div>
+                  <div className="text-sm text-gray-500">{feature.statLabel}</div>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Products Showcase */}
+      {/* New Achievement Section */}
+      <section className="py-24 bg-primary/5 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="text-primary font-medium tracking-wider text-sm uppercase mb-4 block">Our Impact</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Driving Industry Excellence</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { number: "1000+", label: "Installations Worldwide" },
+              { number: "31+", label: "Years of Excellence" },
+              { number: "24/7", label: "Technical Support" },
+              { number: "98%", label: "Client Satisfaction" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="text-center p-8 rounded-xl bg-white shadow-lg hover:shadow-xl transition-all"
+              >
+                <h3 className="text-4xl md:text-5xl font-bold text-primary mb-2">{stat.number}</h3>
+                <p className="text-gray-600">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* New Industries Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="text-primary font-medium tracking-wider text-sm uppercase mb-4 block">Industries We Serve</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Powering Diverse Industries</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our solutions are trusted across multiple sectors, delivering precision and reliability where it matters most.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Packaging",
+                description: "Advanced solutions for flexible packaging and film manufacturing",
+                icon: Package
+              },
+              {
+                title: "Automotive",
+                description: "Precision components for automotive applications",
+                icon: Car
+              },
+              {
+                title: "Construction",
+                description: "Durable materials for building and infrastructure",
+                icon: Building
+              },
+              {
+                title: "Medical",
+                description: "High-precision solutions for medical devices",
+                icon: Stethoscope
+              },
+              {
+                title: "Agriculture",
+                description: "Sustainable solutions for agricultural applications",
+                icon: Leaf
+              },
+              {
+                title: "Consumer Goods",
+                description: "Quality materials for everyday products",
+                icon: ShoppingBag
+              }
+            ].map((industry, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="p-6 rounded-xl bg-white shadow-lg hover:shadow-xl transition-all group cursor-pointer"
+              >
+                <div className="mb-4 relative">
+                  <div className="absolute inset-0 bg-primary/10 rounded-full scale-150 blur-xl group-hover:scale-175 transition-transform" />
+                  <div className="relative bg-white rounded-full p-4 w-16 h-16 flex items-center justify-center shadow-lg">
+                    <industry.icon className="w-8 h-8 text-primary" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{industry.title}</h3>
+                <p className="text-gray-600">{industry.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Products Showcase Section */}
       <section className="py-20 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div
