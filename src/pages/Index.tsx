@@ -15,6 +15,7 @@ const Index = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   useEffect(() => {
     const observerOptions = {
@@ -42,17 +43,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Animated Gradient Background */}
+      {/* Hero Section with Enhanced Animated Background */}
       <motion.section
         ref={targetRef}
-        style={{ y, opacity }}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-gray-50"
+        style={{ y, opacity, scale }}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute w-[500px] h-[500px] -top-40 -left-40 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl animate-float opacity-70" />
-          <div className="absolute w-[500px] h-[500px] -bottom-40 -right-40 bg-blue-400/10 rounded-full mix-blend-multiply filter blur-xl animate-float opacity-70" />
+        {/* Enhanced Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white">
+          <div className="absolute w-[800px] h-[800px] -top-40 -left-40 bg-primary/5 rounded-full mix-blend-multiply filter blur-3xl animate-gradient-xy opacity-70" />
+          <div className="absolute w-[600px] h-[600px] -bottom-40 -right-40 bg-blue-400/10 rounded-full mix-blend-multiply filter blur-2xl animate-gradient-y opacity-60" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-r from-transparent via-white/90 to-transparent animate-gradient-x" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
         </div>
 
         {/* Main Content */}
@@ -71,34 +73,47 @@ const Index = () => {
               </span>
             </motion.div>
 
-            {/* Main Heading with Gradient Text */}
+            {/* Enhanced Main Heading with Gradient Text */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500 leading-tight"
             >
               Innovating the Future of{" "}
               <span className="relative inline-block">
                 Extrusion
-                <svg className="absolute -bottom-2 left-0 w-full h-2 text-primary/20" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M0,50 Q50,0 100,50" fill="none" stroke="currentColor" strokeWidth="8"/>
-                </svg>
+                <motion.svg
+                  className="absolute -bottom-2 left-0 w-full h-2 text-primary/20"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                >
+                  <path
+                    d="M0,50 Q50,0 100,50"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    className="motion-safe:animate-draw"
+                  />
+                </motion.svg>
               </span>
             </motion.h1>
 
-            {/* Animated Description */}
+            {/* Enhanced Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto"
             >
               Pioneering advanced extrusion technologies with 31 years of excellence,
               delivering cutting-edge solutions for tomorrow's manufacturing challenges.
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* Enhanced CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -125,36 +140,10 @@ const Index = () => {
                 </Link>
               </Button>
             </motion.div>
-
-            {/* Scroll Indicator */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 1 }}
-              className="absolute bottom-8 left-1/2 -translate-x-1/2"
-            >
-              <div className="flex flex-col items-center">
-                <span className="text-sm text-gray-500 mb-2">Scroll to explore</span>
-                <motion.div
-                  animate={{
-                    y: [0, 10, 0],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                  className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center p-2"
-                >
-                  <motion.div className="w-1 h-1 bg-gray-300 rounded-full" />
-                </motion.div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </motion.section>
 
-      {/* Features Section */}
       <section className="py-20 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <motion.div

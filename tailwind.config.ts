@@ -38,6 +38,7 @@ export default {
         "gradient-x": "gradient-x 15s ease infinite",
         "gradient-y": "gradient-y 15s ease infinite",
         "gradient-xy": "gradient-xy 15s ease infinite",
+        draw: "draw 1.5s ease-in-out forwards",
       },
       keyframes: {
         fadeIn: {
@@ -81,6 +82,10 @@ export default {
             "background-size": "200% 200%",
             "background-position": "right center"
           }
+        },
+        draw: {
+          "0%": { strokeDasharray: "1 100", strokeDashoffset: "100" },
+          "100%": { strokeDasharray: "100 100", strokeDashoffset: "0" }
         }
       },
     },
