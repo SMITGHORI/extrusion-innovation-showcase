@@ -24,12 +24,20 @@ export default {
       },
       colors: {
         border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: "#0016a9",
-        "primary-light": "#1a2fbd",
-        "primary-dark": "#001087",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          light: "hsl(var(--primary-light))",
+        },
         secondary: "#F5F5F5",
+      },
+      backgroundImage: {
+        'grid-small-white': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='8' height='8' fill='none' stroke='rgb(255 255 255 / 0.1)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E\")",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
@@ -39,6 +47,9 @@ export default {
         "gradient-y": "gradient-y 15s ease infinite",
         "gradient-xy": "gradient-xy 15s ease infinite",
         draw: "draw 1.5s ease-in-out forwards",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        'gradient': 'gradient 15s ease infinite',
       },
       keyframes: {
         fadeIn: {
@@ -86,7 +97,19 @@ export default {
         draw: {
           "0%": { strokeDasharray: "1 100", strokeDashoffset: "100" },
           "100%": { strokeDasharray: "100 100", strokeDashoffset: "0" }
-        }
+        },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        gradient: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
       },
     },
   },

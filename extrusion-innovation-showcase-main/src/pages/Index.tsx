@@ -71,60 +71,57 @@ const Index = () => {
       <motion.section
         ref={targetRef}
         style={{ y, opacity, scale }}
-        className="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* Enhanced Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white">
-          <div className="absolute w-[800px] h-[800px] -top-40 -left-40 bg-primary/5 rounded-full mix-blend-multiply filter blur-3xl animate-gradient-xy opacity-70" />
-          <div className="absolute w-[600px] h-[600px] -bottom-40 -right-40 bg-blue-400/10 rounded-full mix-blend-multiply filter blur-2xl animate-gradient-y opacity-60" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-r from-transparent via-white/90 to-transparent animate-gradient-x" />
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+        {/* Animated background dots */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-grid-small-white/[0.2] -z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-primary/10 to-primary/5 animate-gradient" />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.8 }}
+            transition={{ duration: 1 }}
+            className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] rounded-full bg-gradient-radial from-primary/20 via-primary/5 to-transparent blur-3xl"
+          />
         </div>
 
-        {/* Main Content with Responsive Typography */}
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Animated Badge */}
+        <div className="container px-4 md:px-6 relative z-10">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-block mb-6"
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-primary/10 text-primary">
-                <span className="animate-pulse mr-2">●</span>
+              <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20 shadow-sm backdrop-blur-sm">
+                <span className="w-2 h-2 bg-primary rounded-full animate-pulse mr-2" />
                 Innovating Since 1990
               </span>
             </motion.div>
 
-            {/* Enhanced Main Heading with Responsive Typography */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500 leading-tight"
-            >
-              Innovating the Future of{" "}
-              <span className="relative inline-block">
-                Extrusion
-                <motion.svg
-                  className="absolute -bottom-2 left-0 w-full h-2 text-primary/20"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                >
-                  <path
-                    d="M0,50 Q50,0 100,50"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    className="motion-safe:animate-draw"
-                  />
-                </motion.svg>
-              </span>
-            </motion.h1>
+            <div className="relative">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 0.1, scale: 1 }}
+                transition={{ duration: 1 }}
+                className="absolute -inset-x-20 -inset-y-10 bg-gradient-to-r from-primary/30 via-primary/10 to-primary/30 blur-2xl rounded-full"
+              />
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="relative mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+              >
+                <span className="inline-block bg-gradient-to-br from-gray-900 via-primary to-gray-900 bg-clip-text text-transparent dark:from-white dark:via-primary-light dark:to-white">
+                  Innovating the Future
+                </span>
+                <br className="hidden sm:block" />
+                <span className="inline-block bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
+                  of Extrusion
+                </span>
+                <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-primary/10 to-primary-light/10 blur-xl opacity-50 animate-pulse" />
+              </motion.h1>
+            </div>
 
             {/* Enhanced Description with Responsive Typography */}
             <motion.p
