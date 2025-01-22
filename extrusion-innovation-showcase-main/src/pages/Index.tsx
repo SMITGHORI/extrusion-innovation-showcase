@@ -103,9 +103,12 @@ const Index = () => {
       {/* Main Content */}
       <div className="relative">
         {/* Hero Section */}
-        <section className="fixed top-0 left-0 w-full h-screen flex items-center justify-center">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col items-center justify-center gap-6 md:gap-8">
+        <section ref={targetRef} className="relative min-h-screen w-full flex items-center justify-center py-20 md:py-32">
+          <motion.div 
+            style={{ y, opacity, scale }}
+            className="container mx-auto px-4 pt-16 md:pt-20"
+          >
+            <div className="flex flex-col items-center justify-center gap-6 md:gap-8 max-w-6xl mx-auto">
               {/* Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -125,7 +128,7 @@ const Index = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
                 >
                   <span className="block bg-gradient-to-br from-primary via-primary-light to-primary bg-clip-text text-transparent mb-2">
                     Innovating the Future
@@ -141,7 +144,7 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="max-w-2xl text-center mx-auto text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed"
+                className="max-w-2xl text-center mx-auto text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed px-4"
               >
                 Pioneering advanced extrusion technologies with{" "}
                 <span className="text-primary font-semibold">34 years</span> of excellence,{" "}
@@ -153,7 +156,7 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
-                className="flex flex-wrap justify-center gap-4 mt-4 md:mt-8"
+                className="flex flex-wrap justify-center gap-4 mt-4 md:mt-8 px-4"
               >
                 <Button
                   asChild
@@ -176,7 +179,7 @@ const Index = () => {
                 </Button>
               </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Content after hero */}
