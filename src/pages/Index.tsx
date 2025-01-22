@@ -15,6 +15,7 @@ const Index = () => {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
     const observerOptions = {
@@ -43,7 +44,11 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section with 3D Animation */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <motion.section
+        ref={targetRef}
+        style={{ y, opacity }}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
         <ThreeScene />
 
         <div className="gradient-blur bg-primary/30 top-0 left-0" />
@@ -53,14 +58,14 @@ const Index = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="container mx-auto px-4 relative z-10"
+          className="container mx-auto px-4 relative z-10 text-center"
         >
-          <div className="max-w-3xl">
+          <div className="max-w-4xl mx-auto">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-7xl md:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-blue-500"
             >
               Innovating the Future of{" "}
               <span className="text-primary">Extrusion</span>
@@ -69,7 +74,7 @@ const Index = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl text-gray-700 mb-8 leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed"
             >
               Pioneering advanced extrusion technologies with 31 years of excellence,
               delivering cutting-edge solutions for tomorrow's manufacturing challenges.
@@ -78,11 +83,11 @@ const Index = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex gap-4 flex-wrap"
+              className="flex gap-4 flex-wrap justify-center"
             >
               <Button
                 asChild
-                className="group bg-primary hover:bg-primary-dark text-white px-8 py-6 text-lg rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
+                className="group bg-primary hover:bg-primary-dark text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
               >
                 <Link to="/products">
                   Explore Solutions
@@ -92,7 +97,7 @@ const Index = () => {
               <Button
                 asChild
                 variant="outline"
-                className="group px-8 py-6 text-lg rounded-xl border-2 hover:bg-primary/5 transition-all duration-300"
+                className="group px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-xl border-2 hover:bg-primary/5 transition-all duration-300"
               >
                 <Link to="/contact">
                   Get in Touch
@@ -102,7 +107,7 @@ const Index = () => {
             </motion.div>
           </div>
         </motion.div>
-      </section>
+      </motion.section>
 
       {/* Features Section */}
       <section className="py-20 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
